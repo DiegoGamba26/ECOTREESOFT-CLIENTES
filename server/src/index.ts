@@ -1,6 +1,5 @@
 import express, { Application } from 'express';
 import indexRoutes from './routes/indexRoutes';
-import gamesRoutes from './routes/gamesRoutes';
 class Server {
    public app: Application;
     constructor() {
@@ -13,7 +12,7 @@ class Server {
         this.app.set('port', process.env.PORT || 3000);
     }
     routes(): void{
-
+        this.app.use(indexRoutes);
     }
 
     start(): void{
