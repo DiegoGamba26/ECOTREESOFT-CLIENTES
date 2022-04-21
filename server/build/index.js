@@ -17,13 +17,13 @@ class Server {
     config() {
         this.app.set('port', process.env.PORT || 3000);
         this.app.use((0, morgan_1.default)('dev'));
-    }
-    routes() {
-        this.app.use('/', indexRoutes_1.default);
-        this.app.use('/api/productos', productosRoutes_1.default);
         this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: true }));
+    }
+    routes() {
+        this.app.use('/', indexRoutes_1.default);
+        this.app.use('/api/', productosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
