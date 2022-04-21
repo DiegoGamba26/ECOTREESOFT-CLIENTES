@@ -9,7 +9,7 @@ CREATE TABLE productos (
   id INT(6) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(50) ,
   descripcion TEXT,
-  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  fecha DATE DEFAULT CURRENT_TIMESTAMP,
   imagen VARCHAR(255),
   url VARCHAR(255)
 );
@@ -18,6 +18,6 @@ drop table productos;
 show tables;
 
 -- to describe table
-describe customer;
+describe productos;
 
-select * from customer;
+select * from productos;

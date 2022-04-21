@@ -22,19 +22,36 @@ class ProductosController {
         });
     }
     obtenerProducto(req, res) {
-        database_1.default.query('DESCRIBE productos');
-        res.json('Productossss');
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const games = yield database_1.default.query('SELECT * FROM productos WHERE id = ?', [id]);
+            console.log(games.length);
+            if (games.length > 0) {
+                return res.json(games[0]);
+            }
+            res.status(404).json({ text: "El producto no existe mi so" });
+        });
     }
     crearProducto(req, res) {
-        console.log(req.body);
-        //await pool.query('INSERT INTO productos set ?', [req.body])
-        res.json({ text: 'Producto guardado' });
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query('INSERT INTO productos set ?', [req.body]);
+            res.json({ message: 'Producto Guardado MI SOOOO' });
+        });
     }
     eliminarProducto(req, res) {
-        res.json({ text: 'Eliminando un producto' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('DELETE FROM productos WHERE id = ?', [id]);
+            res.json("ELIMINADOOOO PAPAAAAAAAAAAA");
+        });
     }
     actualizarProducto(req, res) {
-        res.json({ text: 'Actualizando un producto' + req.params.id });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const anterior = req.body;
+            yield database_1.default.query('UPDATE productos set ? WHERE id = ?', [anterior, id]);
+            res.json("ACTUALIZADO PAPAAAAAAAAAAA");
+        });
     }
 }
 exports.productosController = new ProductosController();
